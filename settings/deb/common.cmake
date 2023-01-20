@@ -1,5 +1,10 @@
 macro(set_common_deb_settings)
+  require_variables(
+    "package_arch"
+  )
+
   set(CPACK_GENERATOR "DEB")
+  set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "${package_arch}")
   # set(CPACK_DEB_COMPONENT_INSTALL ON)
   # set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
   # set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE)

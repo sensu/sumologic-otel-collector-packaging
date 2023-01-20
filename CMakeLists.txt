@@ -40,12 +40,20 @@ create_otelcol_sumos_target()
 # Include package functions
 include("${PACKAGES_DIR}/otc_linux_amd64_deb.cmake")
 include("${PACKAGES_DIR}/otc_linux_amd64_rpm.cmake")
+include("${PACKAGES_DIR}/otc_linux_arm64_deb.cmake")
+include("${PACKAGES_DIR}/otc_linux_arm64_rpm.cmake")
+include("${PACKAGES_DIR}/otc_selinux_linux_noarch_rpm.cmake")
 
 # Build deb package configs & targets
 package_otc_linux_amd64_deb()
+package_otc_linux_arm64_deb()
 
-# Build rpm package configs & targets
+# Build rpm package configs & targets for otelcol-sumo
 package_otc_linux_amd64_rpm()
+package_otc_linux_arm64_rpm()
+
+# Build rpm package configs & targets for otelcol-sumo-selinux
+package_otc_selinux_linux_noarch_rpm()
 
 # Create target for all packages & package types
 create_packages_target()

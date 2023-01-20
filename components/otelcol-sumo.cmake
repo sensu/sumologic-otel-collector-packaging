@@ -9,6 +9,10 @@ endmacro()
 
 # e.g. /etc/otelcol-sumo
 macro(install_otc_config_directory)
+  require_variables(
+    "OTC_CONFIG_DIR"
+    "otc_component"
+  )
   install(
     DIRECTORY
     DESTINATION ${OTC_CONFIG_DIR}
@@ -22,6 +26,7 @@ endmacro()
 # e.g. /etc/otelcol-sumo/conf.d
 macro(install_otc_config_fragment_directory)
   require_variables(
+    "OTC_CONFIG_FRAGMENTS_DIR"
     "otc_component"
   )
   install(
@@ -37,6 +42,7 @@ endmacro()
 # e.g. /var/lib/otelcol-sumo
 macro(install_otc_state_directory)
   require_variables(
+    "OTC_STATE_DIR"
     "otc_component"
   )
   install(
@@ -52,6 +58,7 @@ endmacro()
 # e.g. /var/lib/otelcol-sumo/file_storage
 macro(install_otc_filestorage_state_directory)
   require_variables(
+    "OTC_FILESTORAGE_STATE_DIR"
     "otc_component"
   )
   install(
@@ -67,6 +74,9 @@ endmacro()
 # e.g. /usr/local/bin/otelcol-sumo
 macro(install_otc_binary)
   require_variables(
+    "OTC_BIN_DIR"
+    "goos"
+    "goarch"
     "otc_component"
   )
 
@@ -85,7 +95,7 @@ macro(install_otc_binary)
       OWNER_READ OWNER_EXECUTE
       GROUP_READ GROUP_EXECUTE
       WORLD_READ WORLD_EXECUTE
-    RENAME ${OTC_BINARY}
+    RENAME "${OTC_BINARY}"
     COMPONENT "${otc_component}"
   )
 endmacro()
@@ -93,10 +103,13 @@ endmacro()
 # e.g. /etc/otelcol-sumo/sumologic.yaml
 macro(install_otc_sumologic_yaml)
   require_variables(
+    "OTC_ASSETS_DIR"
+    "OTC_CONFIG_DIR"
+    "OTC_SUMOLOGIC_CONFIG"
     "otc_component"
   )
   install(
-    FILES "${ASSETS_DIR}/sumologic.yaml"
+    FILES "${OTC_ASSETS_DIR}/sumologic.yaml"
     DESTINATION "${OTC_CONFIG_DIR}"
     PERMISSIONS
       OWNER_READ
@@ -108,10 +121,12 @@ endmacro()
 
 macro(install_otc_service_systemd)
   require_variables(
+    "OTC_ASSETS_DIR"
+    "OTC_SYSTEMD_DIR"
     "otc_component"
   )
   install(
-    FILES "${ASSETS_DIR}/systemd/otelcol-sumo.service"
+    FILES "${OTC_ASSETS_DIR}/systemd/otelcol-sumo.service"
     DESTINATION "${OTC_SYSTEMD_DIR}"
     PERMISSIONS
       OWNER_READ OWNER_WRITE

@@ -3,7 +3,10 @@ macro(set_otc_settings)
     "otc_component"
   )
 
-  # Directory paths
+  # Local directory paths
+  set(OTC_ASSETS_DIR "${ASSETS_DIR}/otc")
+
+  # Destination directory paths
   set(OTC_BIN_DIR "usr/local/bin")
   set(OTC_CONFIG_DIR "etc/otelcol-sumo")
   set(OTC_CONFIG_FRAGMENTS_DIR "${OTC_CONFIG_DIR}/conf.d")
@@ -26,7 +29,7 @@ macro(set_otc_settings)
   set(CPACK_INSTALL_CMAKE_PROJECTS "${CMAKE_BINARY_DIR};otelcol-sumo;${CPACK_COMPONENTS_ALL};/")
 
   set(CPACK_RESOURCE_FILE_LICENSE "${ASSETS_DIR}/LICENSE")
-  set(CPACK_PACKAGE_DESCRIPTION_FILE "${ASSETS_DIR}/description")
+  set(CPACK_PACKAGE_DESCRIPTION_FILE "${OTC_ASSETS_DIR}/description")
   set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "An agent to send logs, metrics and traces to Sumo Logic")
   # set(CPACK_COMPONENTS_GROUPING "ONE_PER_GROUP")
   # set(CPACK_COMPONENT_BINARY_GROUP "runtime")
