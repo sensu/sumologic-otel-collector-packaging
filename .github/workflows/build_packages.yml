@@ -156,7 +156,6 @@ jobs:
       - determine_version
     permissions:
       contents: write
-    if: github.event.inputs.release
     steps:
       - name: Download all packages stored as artifacts
         uses: actions/download-artifact@v3
